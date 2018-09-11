@@ -7,14 +7,6 @@ class Standard  extends Product implements IProduct
     use TGps;
     use TDriver;
 
-    public function howOld()
-    {
-        if (!parent::howOld()) {
-            return false;
-        }
-    }
-
-
     public function getResult()
     {
         $result = $this->km * self::PRICE_PER_KM + $this->time * self::PRICE_PER_TIME;
@@ -26,9 +18,8 @@ class Standard  extends Product implements IProduct
             $result += 100;
 
         }
-        if($this->howOld()){
-            $result = $result * 1.1;
-
+        if ($this->highPrice()) {
+            $result *= 1.1;
         }
         echo "Вы выбрали {$this->km}км, и {$this->time} это будет стоить " . $result . " рублей";
     }

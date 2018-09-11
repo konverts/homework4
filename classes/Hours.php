@@ -7,13 +7,6 @@ class Hours  extends Product implements IProduct
     use TGps;
     use TDriver;
 
-    public function howOld()
-    {
-        if (!parent::howOld()) {
-            return false;
-        }
-    }
-
     public function rounding()
     {
             $res = ceil($this->time/60);
@@ -32,9 +25,8 @@ class Hours  extends Product implements IProduct
             $result += 100;
 
         }
-        if($this->howOld()){
+        if ($this->highPrice()) {
             $result *= 1.1;
-
         }
         echo "Вы выбрали {$this->km}км, и {$this->time} это будет стоить " . $result . " рублей";
     }
